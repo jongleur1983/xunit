@@ -31,6 +31,16 @@ namespace Xunit1
             }
 
             [Fact]
+            public void MultiDimensionalArrayWithDifferentNestingAreNotEqual()
+            {
+                var array1 = new object[,] { { 1 }, { 2 } };
+                var array2 = new object[,] { { 1, 2 } };
+
+                Assert.Throws<NotEqualException>(() => Assert.Equal(array1, array2));
+                Assert.NotEqual(array1, array2);
+            }
+
+            [Fact]
             public void ArraysOfDifferentLengthsAreNotEqual()
             {
                 string[] expected = { "@", "a", "ab", "b", "c" };
